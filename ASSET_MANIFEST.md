@@ -2,6 +2,7 @@
 
 ## Supplied assets
 
+
 No personal photos, logos, résumé PDF, project screenshots or GLB room assets were attached to this specific request. This v1 uses code-built geometry, original generated screen layouts and fallback project artwork.
 
 ## High-priority replacements for a photorealistic v2
