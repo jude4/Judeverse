@@ -27,7 +27,7 @@ export default function EffectsRig({ quality }: { quality: 'high' | 'low' }) {
       />
       <Noise
         key="noise"
-        amount={quality === 'high' ? 0.035 : 0.02}
+        opacity={quality === 'high' ? 0.035 : 0.02}
         blendFunction={BlendFunction.SCREEN}
       />
     </EffectComposer>
