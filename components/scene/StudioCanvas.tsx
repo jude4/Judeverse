@@ -5,6 +5,10 @@ import { RoundedBox, Text, Line, Stars, useCursor } from '@react-three/drei';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import gsap from 'gsap';
+import EffectsRig from '@/components/scene/EffectsRig';
+import { GlassMaterial } from '@/components/scene/GlassMaterial';
+import { HologramMaterial } from '@/components/scene/HologramMaterial';
+import { NeonSign } from '@/components/scene/NeonSign';
 import { useStudioStore, type Section } from '@/store/useStudioStore';
 
 type Props = { onError: () => void; reducedMotion: boolean };
@@ -63,6 +67,78 @@ function Hotspot({ at, name, onClick, color = '#e6c69c' }: { at: [number,number,
   </group>;
 }
 
+function ProjectCard({ color, index }: { color: string; index: number }) {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    uniforms: {
+      uColor: { value: new THREE.Color(color) },
+      uBase: { value: new THREE.Color('#10181c') },
+      uTime: { value: 0 }
+    },
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+    vertexShader: /* glsl */`
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      varying vec3 vViewDir;
+      void main() {
+        vUv = uv;
+        vNormal = normalize(normalMatrix * normal);
+        vec4 viewPos = viewMatrix * modelMatrix * vec4(position, 1.0);
+        vViewDir = normalize(-viewPos.xyz);
+        gl_Position = projectionMatrix * viewPos;
+      }
+    `,
+    fragmentShader: /* glsl */`
+      precision highp float;
+      uniform vec3 uColor;
+      uniform vec3 uBase;
+      uniform float uTime;
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      varying vec3 vViewDir;
+
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        f = f * f * (3.0 - 2.0 * f);
+        float a = fract(sin(dot(i, vec2(12.9898,78.233))) * 43758.5453);
+        float b = fract(sin(dot(i + vec2(1.0,0.0), vec2(12.9898,78.233))) * 43758.5453);
+        float c = fract(sin(dot(i + vec2(0.0,1.0), vec2(12.9898,78.233))) * 43758.5453);
+        float d = fract(sin(dot(i + vec2(1.0,1.0), vec2(12.9898,78.233))) * 43758.5453);
+        return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+      }
+
+      void main() {
+        vec3 N = normalize(vNormal);
+        vec3 V = normalize(vViewDir);
+        float ndv = max(dot(N, V), 0.0);
+        float fresnel = pow(1.0 - ndv, 3.0);
+
+        // Slow diagonal sheen sweeping across the panel.
+        float sheen = noise(vUv * 3.0 + vec2(uTime * 0.25, -uTime * 0.18));
+        float band = smoothstep(0.35, 0.75, sheen) * 0.5 + 0.5;
+
+        vec3 col = uBase + uColor * (0.35 + 0.55 * band + fresnel * 0.9);
+        gl_FragColor = vec4(col, 0.85 + 0.15 * fresnel);
+      }
+    `
+  }), [color]);
+
+  useFrame((state) => {
+    material.uniforms.uTime.value = state.clock.elapsedTime;
+  });
+
+  return (
+    <mesh position={[0,0,.051]} rotation={[0,0,index===1?-0.3:0.2]}>
+      <planeGeometry args={[0.98, 1.73]} />
+      <primitive ref={matRef} attach="material" object={material} />
+    </mesh>
+  );
+}
+
 function useSkylineTexture(variant: number) {
   const tex = useMemo(() => {
     const canvas = document.createElement('canvas'); canvas.width=128; canvas.height=256;
@@ -94,6 +170,67 @@ function Skyline() {
   </group>;
 }
 
+function VolumetricBeam() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color('#dfe9ee') } },
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+    vertexShader: /* glsl */`
+      varying vec2 vUv;
+      varying vec3 vWorldPos;
+      void main() {
+        vUv = uv;
+        vec4 wp = modelMatrix * vec4(position, 1.0);
+        vWorldPos = wp.xyz;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: /* glsl */`
+      precision highp float;
+      uniform float uTime;
+      uniform vec3 uColor;
+      varying vec2 vUv;
+      varying vec3 vWorldPos;
+
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        f = f * f * (3.0 - 2.0 * f);
+        float a = fract(sin(dot(i, vec2(12.9898,778.233))) * 43758.5453);
+        float b = fract(sin(dot(i + vec2(1.0,0.0), vec2(12.9898,78.233))) * 43758.5453);
+        float c = fract(sin(dot(i + vec2(0.0,1.0), vec2(12.9898,78.233))) * 43758.5453);
+        float d = fract(sin(dot(i + vec2(1.0,1.0), vec2(12.9898,78.233))) * 43758.5453);
+        return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+      }
+
+      void main() {
+        // Taper from the window (bright) down to the floor (fading).
+        float taper = pow(1.0 - vUv.y, 1.8);
+        float n = noise(vWorldPos.xz * 0.9 + uTime * 0.05);
+        float shimmer = 0.55 + 0.45 * n;
+        float a = taper * shimmer * 0.16;
+        gl_FragColor = vec4(uColor * shimmer, a);
+      }
+    `
+  }), []);
+
+  useFrame((state) => {
+    material.uniforms.uTime.value = state.clock.elapsedTime;
+  });
+
+  return (
+    <group position={[1.2, 2.55, -4.05]} rotation={[0.38, 0, -0.55]}>
+      <mesh>
+        <planeGeometry args={[3.4, 5.6, 1, 1]} />
+        <primitive attach="material" object={material} />
+      </mesh>
+    </group>
+  );
+}
+
 function Architecture() {
   const night = useStudioStore(s=>s.nightMode);
   return <group>
@@ -103,14 +240,19 @@ function Architecture() {
     <mesh position={[-4.83,2.62,-5.32]} receiveShadow><boxGeometry args={[6.0,5.25,.25]}/><meshStandardMaterial color="#283038" roughness={.94}/></mesh>
     <mesh position={[7.63,2.6,-1]}><boxGeometry args={[.18,5.2,8.8]}/><meshStandardMaterial color="#242d33" roughness={.78}/></mesh>
     <mesh position={[0,5.25,-.1]}><boxGeometry args={[15.5,.18,10.8]}/><meshStandardMaterial color="#263039" roughness={1}/></mesh>
-    {/* Full-height framed panoramic glass */}
-    <mesh position={[3.72,2.5,-5.31]}><planeGeometry args={[9.06,4.92]}/><meshPhysicalMaterial color="#9bb6c4" transparent opacity={.085} roughness={.06} metalness={.07} depthWrite={false}/></mesh>
+    {/* Full-height framed panoramic glass — custom Fresnel/caustic shader */}
+    <mesh position={[3.72,2.5,-5.31]}><planeGeometry args={[9.06,4.92]}/><GlassMaterial color="#9bb6c4" tint="#bfe3ee" roughness={.04} metalness={.06} transmission={.55} opacity={.14} iridescence={.35}/></mesh>
+    {/* Volumetric light beam spilling in through the glass */}
+    <VolumetricBeam/>
     {[ -1.86, 1.2,4.3,7.45].map(x=><mesh key={x} position={[x,2.6,-5.16]}><boxGeometry args={[.085,5.2,.14]}/><meshStandardMaterial color="#13191f" metalness={.7} roughness={.35}/></mesh>)}
     {[.24,5.06].map(y=><mesh key={y} position={[2.85,y,-5.15]}><boxGeometry args={[9.3,.1,.13]}/><meshStandardMaterial color="#151d25" metalness={.65} roughness={.45}/></mesh>)}
     <mesh position={[2.85,2.68,-5.16]}><boxGeometry args={[9.3,.065,.13]}/><meshStandardMaterial color="#151d25" metalness={.6} roughness={.45}/></mesh>
     {/* warm lit wall strips */}
     <mesh position={[-1.8,2.65,-5.15]}><boxGeometry args={[.05,4.9,.05]}/><meshBasicMaterial color={night ? '#b27b48':'#ffbc70'}/></mesh>
     <mesh position={[-7.57,2.7,-1]}><boxGeometry args={[.04,4.7,.05]}/><meshBasicMaterial color="#725f51"/></mesh>
+    {/* Architectural neon identity sign on the rear wall */}
+    <NeonSign text="UJ" position={[-4.35, 3.35, -5.18]} color="#e9c98a" size={.42}/>
+    <NeonSign text="STUDIO" position={[1.35, 3.35, -5.18]} color="#8fd6c4" size={.30}/>
     {/* columns and ceiling slats */}
     {[ -6.9,-3.7,-.5,2.7,5.9].map(x=><mesh key={x} position={[x,5.12,0]}><boxGeometry args={[.13,.12,10.4]}/><meshStandardMaterial color="#363632" roughness={.75}/></mesh>)}
     <group position={[-.7,.03,1.65]}>
@@ -182,10 +324,7 @@ function ProjectWall() {
     <Text position={[-1.67,4.05,.18]} anchorX="left" fontSize={.105} color="#bdac91" letterSpacing={.13}>SELECTED WORK / 003</Text>
     {projects.map((p,i)=><group key={p.id} position={[-1.23+i*1.23,2.60,.22]} onClick={e=>{e.stopPropagation();openProject(p.id)}} onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}}>
       <RoundedBox args={[1.09,1.84,.095]} radius={.018} castShadow><meshStandardMaterial color="#373d42" roughness={.45} metalness={.5}/></RoundedBox>
-      <mesh position={[0,0,.051]}><planeGeometry args={[.98,1.73]}/><meshStandardMaterial color="#161e23" emissive={p.color} emissiveIntensity={.10}/></mesh>
-      <mesh position={[0,.30,.062]} rotation={[0,0,i===1?-.3:.2]}><torusKnotGeometry args={[.26,.072,100,8,2,3]}/><meshStandardMaterial color={p.color} emissive={p.color} emissiveIntensity={.3} metalness={.55} roughness={.27}/></mesh>
-      <Text fontSize={.105} position={[0,-.54,.063]} color="#f0e5d5" anchorX="center">{p.name}</Text>
-      <Text fontSize={.063} position={[0,-.70,.063]} color="#8b989b" anchorX="center">OPEN CASE STUDY  ↗</Text>
+      <ProjectCard color={p.color} index={i}/>
       <mesh position={[0,0,.08]} visible={false}><boxGeometry args={[1.1,1.85,.10]}/><meshBasicMaterial transparent opacity={0}/></mesh>
     </group>)}
     <mesh position={[0,.86,.42]}><boxGeometry args={[4.08,.08,.43]}/><meshStandardMaterial color="#4a3a32" roughness={.7}/></mesh>
@@ -211,7 +350,7 @@ function AISculpture({ reducedMotion }: { reducedMotion: boolean }) {
         {[0,1,2].map(i=><mesh key={i} rotation={[(i*1.2)+.2,(i*.9),i*.9]}><torusGeometry args={[1.03,.012,8,96]}/><meshBasicMaterial color={i===0?'#86c8b8':'#527c8c'} transparent opacity={.7} toneMapped={false}/></mesh>)}
         {nodes.map((n,i)=><mesh key={i} position={n}><icosahedronGeometry args={[i%5===0?.085:.046,0]}/><meshBasicMaterial color={i%3===0?'#e4cb99':'#91d8c4'} toneMapped={false}/></mesh>)}
         {lines.map(l=><Line key={l.k} points={[l.v,l.w]} color="#578c89" lineWidth={.6} transparent opacity={.43}/>)}
-        <mesh><icosahedronGeometry args={[.25,1]}/><meshStandardMaterial color="#a2c6c1" metalness={.9} roughness={.12} emissive="#438277" emissiveIntensity={.45}/></mesh>
+        <mesh><icosahedronGeometry args={[.25,1]}/><HologramMaterial color="#98e3d1" speed={0.8}/></mesh>
       </group>
       <mesh visible={false}><sphereGeometry args={[1.33,12,12]}/><meshBasicMaterial transparent opacity={0}/></mesh>
     </group>
@@ -272,8 +411,9 @@ function Scene({ reducedMotion }: { reducedMotion: boolean }) {
     <fog attach="fog" args={['#101b28',18,52]}/>
     <CameraDirector reducedMotion={reducedMotion}/>
     <Lighting/>
-    {quality==='high' && <Stars radius={45} depth={17} count={350} factor={2} saturation={0} fade speed={.3}/>} 
+    {quality==='high' && <Stars radius={45} depth={17} count={350} factor={2} saturation={0} fade speed={.3}/>}
     <Skyline/>
+    <EffectsRig quality={quality}/>
     <Architecture/>
     <Desk/>
     <Chair/>
