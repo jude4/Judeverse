@@ -370,23 +370,19 @@ export default function Portfolio() {
                 <source
                   type="image/avif"
                   srcSet={`${assetPath("/assets/portrait/jude-480.avif")} 480w, ${assetPath("/assets/portrait/jude-800.avif")} 800w`}
-                  sizes="(max-width: 700px) 85vw, 430px"
+                  sizes="(max-width: 700px) min(76vw, 260px), 360px"
                 />
                 <img
                   className="pf-portrait"
                   src={assetPath("/assets/portrait/jude-800.webp")}
                   srcSet={`${assetPath("/assets/portrait/jude-480.webp")} 480w, ${assetPath("/assets/portrait/jude-800.webp")} 800w`}
-                  sizes="(max-width: 700px) 85vw, 430px"
+                  sizes="(max-width: 700px) min(76vw, 260px), 360px"
                   width="800"
                   height="1000"
                   alt="Ufuoma Jude Onohwosafe, senior software engineer"
                   fetchPriority="high"
                 />
               </picture>
-              <div className="pf-portrait-caption">
-                <span>THE PERSON BEHIND THE CODE</span>
-                <ArrowDownRight size={20} />
-              </div>
             </div>
             <div className="pf-portrait-label">
               <Code2 size={16} />

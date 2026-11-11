@@ -238,59 +238,34 @@ body {
 }
 .pf-portrait-wrap {
   position: relative;
-  padding: 0 0 23px;
-  max-width: 440px;
-  justify-self: end;
+  max-width: 360px;
+  justify-self: center;
   width: 100%;
+  text-align: center;
 }
 .pf-portrait-frame {
   position: relative;
-  aspect-ratio: 4/5;
+  aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 3px 3px 0 0;
+  border-radius: 50%;
+  border: 1px solid #d5b98c40;
   background: #232725;
 }
 .pf-portrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
   display: block;
 }
-.pf-portrait-frame:after {
-  content: "";
-  position: absolute;
-  inset: 50% 0 0;
-  background: linear-gradient(transparent, #101719ad);
-  pointer-events: none;
-}
-.pf-portrait-caption {
-  position: absolute;
-  z-index: 1;
-  bottom: 22px;
-  left: 25px;
-  right: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #e9e5d8;
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 1.2px;
-}
 .pf-portrait-label {
-  position: absolute;
-  bottom: 56px;
-  left: -30px;
-  z-index: 2;
-  background: #21302d;
-  border: 1px solid #a4bda83d;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 14px;
-  padding: 17px 21px;
-  transform: translateY(56px);
-  box-shadow: 0 6px 25px #0002;
+  margin-top: 22px;
   color: #c8d6c5;
+  text-align: left;
 }
 .pf-portrait-label span {
   font-family: var(--mono);
@@ -299,9 +274,8 @@ body {
   line-height: 1.8;
 }
 .pf-portrait-coordinate {
-  position: absolute;
-  right: 0;
-  bottom: -6px;
+  display: block;
+  margin-top: 15px;
   font-family: var(--mono);
   font-size: 8px;
   letter-spacing: 1px;
@@ -1292,26 +1266,19 @@ body {
     width: 20px;
   }
   .pf-portrait-wrap {
-    width: 85%;
-    max-width: 380px;
+    width: 76%;
+    max-width: 260px;
     justify-self: center;
     margin-bottom: 12px;
   }
   .pf-portrait-label {
-    left: -15px;
-    padding: 12px 15px;
-    bottom: 46px;
+    margin-top: 18px;
   }
   .pf-portrait-label span {
     font-size: 7px;
   }
   .pf-portrait-coordinate {
     font-size: 6px;
-  }
-  .pf-portrait-caption {
-    font-size: 7px;
-    left: 20px;
-    right: 20px;
   }
   .pf-proof {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1607,10 +1574,6 @@ body {
   border: 0;
   padding: 0;
   color: var(--pf-ink);
-}
-.pf-portrait-caption {
-  top: 20px;
-  bottom: auto;
 }
 .pf-portrait-frame picture {
   display: block;
