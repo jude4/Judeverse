@@ -1,4 +1,6 @@
 'use client';
+
+import '@/components/studio.css';
 import { useEffect, useState } from 'react';
 import { Pause, Play, RotateCcw } from 'lucide-react';
 

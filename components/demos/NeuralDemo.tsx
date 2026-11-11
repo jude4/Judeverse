@@ -1,4 +1,6 @@
 'use client';
+
+import '@/components/studio.css';
 import { useMemo, useState } from 'react';
 
 const weights = [[2.1,-1.4],[-1.2,2.4],[1.5,1.7]];

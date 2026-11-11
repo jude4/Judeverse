@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Code2, Github, Linkedin, Mail, Sparkles, X } from 'lucide-react';
 import NeuralDemo from '@/components/demos/NeuralDemo';
 import PSODemo from '@/components/demos/PSODemo';
+import { experience, education, resumePath } from '@/data/career';
 import { projects, skillGroups, socialLinks } from '@/data/portfolio';
 import { useStudioStore } from '@/store/useStudioStore';
 
@@ -40,7 +41,7 @@ function Projects() {
     {selected.github && <a className="panel-link" href={selected.github} target="_blank" rel="noopener noreferrer">VIEW SOURCE <Github size={17}/></a>}
   </>;
   return <>
-    <PanelHead eyebrow="02 / SELECTED ENGINEERING" title="The work" count="06 PROJECTS"/>
+    <PanelHead eyebrow="02 / SELECTED ENGINEERING" title="The work" count={`${projects.length} PROJECTS`}/>
     <p className="lead-copy">Real products, experimental ideas, and a constant curiosity about how things work.</p>
     <div className="projects-list">{projects.map(project=><button className="project-row" key={project.id} onClick={()=>openProject(project.id)}>
       <div className={`project-icon art-${project.theme}`}>{project.image ? <Image src={project.image} alt="" fill sizes="77px" className="project-real-image"/> : <span>{project.title.slice(0,2).toUpperCase()}</span>}</div>
@@ -66,11 +67,10 @@ function Experience() {
     <PanelHead eyebrow="04 / THE JOURNEY" title="My path" count="EXPERIENCE"/>
     <p className="lead-copy">Years of shipping real software. Still learning, still building.</p>
     <div className="timeline">
-      <div className="timeline-event"><span className="timeline-year">2025 — PRESENT</span><div><h3>MSc Artificial Intelligence</h3><p>POLITEHNICA Bucharest</p><small>NEURAL NETWORKS · REASONING · INTELLIGENT SYSTEMS</small></div></div>
-      <div className="timeline-event"><span className="timeline-year">8+ YEARS</span><div><h3>Software Engineering</h3><p>Full-stack &amp; backend development</p><small>FINTECH · PAYMENTS · DISTRIBUTED SYSTEMS · WEB PLATFORMS</small></div></div>
-      <div className="timeline-event"><span className="timeline-year">2015 — 2019</span><div><h3>BSc Computer Science</h3><p>University of Benin</p><small>FOUNDATIONS IN COMPUTING &amp; SOFTWARE DEVELOPMENT</small></div></div>
+      {experience.map(job => <div className="timeline-event" key={job.company}><span className="timeline-year">{job.period}</span><div><h3>{job.company}</h3><p>{job.role}</p><small>{job.location}</small><ul className="studio-role-details">{job.details.map(detail => <li key={detail}>{detail}</li>)}</ul></div></div>)}
+      {education.map(item => <div className="timeline-event" key={item.title}><span className="timeline-year">{item.period}</span><div><h3>{item.title}</h3><p>{item.school}</p></div></div>)}
     </div>
-    <p className="footnote">Add your complete role-by-role employment timeline from your CV in <code>data/portfolio.ts</code> or this component. Job titles, employers and dates are intentionally not invented.</p>
+    <a className="panel-link" href={resumePath} target="_blank" rel="noopener noreferrer">VIEW FULL RÉSUMÉ <ArrowUpRight size={16}/></a>
   </>;
 }
 function Skills() {

@@ -1,5 +1,7 @@
 'use client';
 
+import './studio.css';
+
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Github, Linkedin, Mail, Menu, Moon, MoveUpRight, Sun, X, Zap } from 'lucide-react';
