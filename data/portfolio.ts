@@ -1,5 +1,6 @@
 import aiProjects from "./ai-projects.json";
 import backendProjects from "./backend-projects.json";
+import packageProjects from "./package-projects.json";
 
 export type Project = {
   id: string;
@@ -16,6 +17,8 @@ export type Project = {
   image?: string;
   threejs?: boolean;
   ai?: boolean;
+  packageWork?: boolean;
+  contributionUrl?: string;
   theme: string;
   featured?: boolean;
   status?: string;
@@ -246,6 +249,7 @@ export const projects: Project[] = [
   },
   ...aiProjects,
   ...backendProjects,
+  ...packageProjects,
 ];
 
 export const skillGroups = [

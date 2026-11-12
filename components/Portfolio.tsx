@@ -54,6 +54,7 @@ const filters = [
   "Product engineering",
   "Three.js",
   "AI & research",
+  "Packages & collaboration",
 ] as const;
 type Filter = (typeof filters)[number];
 
@@ -218,6 +219,11 @@ function ProjectDialog({
             View source on GitHub <Github size={16} />
           </a>
         )}
+        {project.contributionUrl && (
+          <a className="pf-text-link" href={project.contributionUrl} target="_blank" rel="noopener noreferrer">
+            View merged contribution <ExternalLink size={16} />
+          </a>
+        )}
         {!project.url && !project.github && (
           <a className="pf-text-link" href={socialLinks.email}>
             Ask me about this project <ArrowUpRight size={16} />
@@ -317,7 +323,8 @@ export default function Portfolio() {
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
       (filter === "Product engineering" && ["bexit", "nest-admin", "spring-workshop"].includes(p.id)) ||
       (filter === "Three.js" && p.threejs) ||
-      (filter === "AI & research" && p.ai),
+      (filter === "AI & research" && p.ai) ||
+      (filter === "Packages & collaboration" && p.packageWork),
   );
   return (
     <div className="pf-site" ref={site}>
@@ -546,7 +553,7 @@ export default function Portfolio() {
             ))}
           </div>
           <p className="pf-work-footnote">
-            Professional contributions, Three.js projects and AI experiments. Open a
+            Professional contributions, packages, collaborations and creative experiments. Open a
             project to see my role or explore the live experience.
           </p>
         </section>

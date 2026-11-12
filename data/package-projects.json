@@ -1,0 +1,68 @@
+[
+  {
+    "id": "api-toolkit",
+    "number": "21",
+    "title": "Laravel API Toolkit",
+    "category": "PHP PACKAGE / DEVELOPER TOOLS",
+    "summary": "Generate Postman-compatible API collections from Laravel routes.",
+    "description": "A Composer library, judeufuoma/api-toolkit, with an Artisan command that reads API routes, controller documentation and FormRequest rules to generate a Postman collection.",
+    "contribution": "Package development including collection generation, request examples from validation rules, route configuration, tests and a GitHub Actions workflow.",
+    "stack": [
+      "PHP",
+      "Laravel",
+      "Composer",
+      "Postman",
+      "Orchestra Testbench",
+      "GitHub Actions"
+    ],
+    "github": "https://github.com/jude4/laravel-api-toolkit",
+    "theme": "mint",
+    "featured": true,
+    "packageWork": true,
+    "status": "PACKAGE DEVELOPMENT"
+  },
+  {
+    "id": "domify",
+    "number": "22",
+    "title": "Domify Framework",
+    "category": "PHP FRAMEWORK / EXPERIMENT",
+    "summary": "Exploring domain-driven application structure in a reusable PHP framework.",
+    "description": "An experimental PHP framework project with a dependency container, middleware dispatcher, Eloquent integration, file caching and a database queue implementation.",
+    "contribution": "Framework development exploring application structure, reusable infrastructure components and Composer-based dependency management.",
+    "stack": [
+      "PHP",
+      "DDD",
+      "Composer",
+      "Eloquent",
+      "Symfony Console",
+      "Database queues"
+    ],
+    "github": "https://github.com/jude4/domify-framework",
+    "theme": "amber",
+    "featured": true,
+    "packageWork": true,
+    "status": "EXPERIMENTAL FRAMEWORK"
+  },
+  {
+    "id": "directcare",
+    "number": "23",
+    "title": "Directcare Collaboration",
+    "category": "COLLABORATION / NUXT",
+    "summary": "Contributing fixes and collaborating through merged pull requests.",
+    "description": "A shared Nuxt/Vue frontend repository. Public pull-request history records contributions and merges by jude4, including pull request #7.",
+    "contribution": "Collaborated on fixes and branch integration through pull requests. The linked contribution provides a public record of the work.",
+    "stack": [
+      "Nuxt.js",
+      "Vue",
+      "JavaScript",
+      "Git",
+      "Pull requests"
+    ],
+    "github": "https://github.com/austine5n6/directcare-frontend",
+    "contributionUrl": "https://github.com/austine5n6/directcare-frontend/pull/7",
+    "theme": "blue",
+    "featured": true,
+    "packageWork": true,
+    "status": "COLLABORATOR"
+  }
+]
