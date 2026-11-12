@@ -78,7 +78,7 @@ function ProjectVisual({
   const words: Record<string, [string, string, string]> = {
     flynt: ["Request", "Idempotency", "Process once"],
     tiqwa: ["Search", "Supplier APIs", "Booking"],
-    beezlinq: ["Profile", "Digital card", "Share"],
+    bexit: ["Design", "Development", "Delivery"],
     utilify: ["Payment", "Queue + webhook", "Confirmed"],
     cardplot: ["Wallet", "Transaction", "Transfer"],
     atravelikes: ["Explore", "Connect", "Discover"],
@@ -273,7 +273,7 @@ export default function Portfolio() {
       (filter === "Payments & fintech" &&
         ["flynt", "utilify", "cardplot"].includes(p.id)) ||
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
-      (filter === "Product engineering" && p.id === "beezlinq") ||
+      (filter === "Product engineering" && p.id === "bexit") ||
       (filter === "Three.js" && p.threejs),
   );
   return (

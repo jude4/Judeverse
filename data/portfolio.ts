@@ -58,18 +58,18 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "beezlinq",
+    id: "bexit",
     number: "03",
-    title: "Beezlinq",
-    category: "DIGITAL BUSINESS CARDS",
+    title: "Bexit",
+    category: "PRODUCT ENGINEERING",
     summary:
-      "Digital business cards that make professional connections easier to share.",
+      "Full-stack development and product engineering at Bexit.",
     description:
-      "A digital business card platform. I worked as a full-stack developer during my time at Bex-IT Digital Solution.",
+      "Explore Bexit and the work of Bex-IT Digital Solution through the live website.",
     contribution:
-      "As a full-stack developer, refactored and debugged application code and improved Beezlinq user workflows with React and Nuxt.js.",
+      "As a full-stack developer, refactored and debugged application code and improved user workflows with React and Nuxt.js.",
     stack: ["React", "Nuxt.js", "Full-stack development"],
-    url: "https://beezlinq.com",
+    url: "https://bexit.com.ng",
     theme: "violet",
     featured: true,
   },

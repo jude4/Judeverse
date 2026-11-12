@@ -35,7 +35,7 @@ npm run build
 | `components/studio.css` | Studio and demonstration styles, imported with those experiences |
 | `app/layout.tsx` | Production metadata, canonical URL and social preview |
 
-Professional roles, dates and contributions are based on the supplied CV. The owner confirmed full-stack development roles on Atravelikes, Tiqwa and Beezlinq, and identified them as travel platforms and a digital business card platform, respectively. Atravelikes technical details remain general because its stack and specific features were not supplied. Project artwork is an illustrative overview, not a screenshot of the live product. No unverified performance or revenue metrics are claimed.
+Professional roles, dates and contributions are based on the supplied CV. The owner confirmed full-stack development roles on Atravelikes, Tiqwa and Beezlinq. The gallery now links to Bexit at the owner’s request; its overview does not describe it as a digital business card platform. Atravelikes technical details remain general because its stack and specific features were not supplied. Project artwork is an illustrative overview, not a screenshot of the live product. No unverified performance or revenue metrics are claimed.
 
 Project dialogs show contributions and offer a direct live link. A third-party website is embedded only after the visitor selects **Preview here**. Some sites prohibit embedding through their own security headers or require authentication; the external link remains available. No third-party page loads during the initial portfolio visit.
 
