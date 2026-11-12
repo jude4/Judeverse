@@ -1,0 +1,43 @@
+[
+  {
+    "id": "nest-admin",
+    "number": "19",
+    "title": "NestJS Admin API",
+    "category": "NODE.JS / BACKEND",
+    "summary": "A TypeScript backend for authentication and administration workflows.",
+    "description": "A Node.js/NestJS project with registration, login, JWT authentication, and CRUD endpoints for users, roles, permissions and products.",
+    "contribution": "Backend project work using NestJS controllers and services, TypeORM entities, MySQL and password hashing.",
+    "stack": [
+      "Node.js",
+      "NestJS",
+      "TypeScript",
+      "TypeORM",
+      "MySQL",
+      "JWT"
+    ],
+    "github": "https://github.com/jude4/nest-admin",
+    "theme": "mint",
+    "featured": true,
+    "status": "BACKEND PROJECT"
+  },
+  {
+    "id": "spring-workshop",
+    "number": "20",
+    "title": "Java & Spring Boot",
+    "category": "JAVA / SPRING BOOT",
+    "summary": "Hands-on Spring Boot work across REST APIs, persistence and security.",
+    "description": "A workshop repository covering dependency injection, REST CRUD, Hibernate/JPA, Spring Data, Spring Security, MVC and validation.",
+    "contribution": "Practical Java/Spring Boot exercises and sample applications exploring layered backend development.",
+    "stack": [
+      "Java",
+      "Spring Boot",
+      "Spring Data JPA",
+      "Hibernate",
+      "Spring Security"
+    ],
+    "github": "https://github.com/jude4/spring-boot-workshop",
+    "theme": "amber",
+    "featured": true,
+    "status": "WORKSHOP / PRACTICE"
+  }
+]

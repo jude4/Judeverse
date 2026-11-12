@@ -1624,3 +1624,38 @@ body {
 .pf-project-screenshot::before {
   display: none;
 }
+
+/* Motion enhances the visible HTML; it never gates access to content. */
+.pf-backend-note {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: .035em;
+  color: var(--pf-gold);
+}
+@keyframes pf-arrive {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pf-portrait-arrive {
+  from { opacity: 0; transform: scale(.96) translateY(18px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pf-hero-copy > * {
+    animation: pf-arrive 850ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .pf-hero-copy > :nth-child(2) { animation-delay: 80ms; }
+  .pf-hero-copy > :nth-child(3) { animation-delay: 160ms; }
+  .pf-hero-copy > :nth-child(4) { animation-delay: 240ms; }
+  .pf-hero-copy > :nth-child(5) { animation-delay: 320ms; }
+  .pf-hero-copy > :nth-child(6) { animation-delay: 400ms; }
+  .pf-portrait-wrap { animation: pf-portrait-arrive 1100ms 180ms cubic-bezier(.22,1,.36,1) both; }
+  .pf-dialog[open] { animation: pf-arrive 280ms cubic-bezier(.22,1,.36,1); }
+  .pf-button svg, .pf-project-open svg { transition: transform 220ms ease; }
+  .pf-button:hover svg, .pf-project-open:hover svg { transform: translate(3px, -2px); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pf-project-card { transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+  .pf-project-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px #0003; }
+}

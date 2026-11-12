@@ -1,4 +1,5 @@
 import aiProjects from "./ai-projects.json";
+import backendProjects from "./backend-projects.json";
 
 export type Project = {
   id: string;
@@ -244,6 +245,7 @@ export const projects: Project[] = [
     status: "ACADEMIC PROTOTYPE",
   },
   ...aiProjects,
+  ...backendProjects,
 ];
 
 export const skillGroups = [
@@ -255,7 +257,7 @@ export const skillGroups = [
   {
     name: "Backend systems",
     desc: "Robust services, APIs, and integrations",
-    skills: ["PHP", "Laravel", "Symfony", "REST APIs", "Queues", "Webhooks"],
+    skills: ["PHP", "Laravel", "Symfony", "Node.js", "NestJS", "Java", "Spring Boot", "REST APIs", "Queues", "Webhooks"],
   },
   {
     name: "Data & infrastructure",

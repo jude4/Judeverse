@@ -33,13 +33,20 @@ styles.add(ParagraphStyle(name='ProjectBody', fontName='DejaVu', fontSize=9.5, l
 styles.add(ParagraphStyle(name='ProjectLink', fontName='DejaVu', fontSize=8, leading=12, spaceAfter=14))
 buffer = BytesIO()
 doc = SimpleDocTemplate(buffer, pagesize=A4, leftMargin=44, rightMargin=44, topMargin=44, bottomMargin=44)
-story = [Paragraph('Ufuoma Jude Onohwosafe', styles['Title']), Paragraph('SELECTED AI &amp; RESEARCH PROJECTS', styles['Heading2']), Paragraph('Academic and experimental work in computer vision, natural language processing, reinforcement learning and LLM-powered multi-agent systems.', styles['ProjectBody']), Spacer(1, 14)]
+story = [Paragraph('Ufuoma Jude Onohwosafe', styles['Title']), Paragraph('SELECTED AI &amp; BACKEND PROJECTS', styles['Heading2']), Paragraph('Academic and experimental work in computer vision, natural language processing, reinforcement learning and LLM-powered multi-agent systems.', styles['ProjectBody']), Spacer(1, 14)]
 for project in projects:
     url = escape(project['github'])
     story.append(KeepTogether([
         Paragraph(escape(project['title']), styles['ProjectTitle']),
         Paragraph(escape(project['description']), styles['ProjectBody']),
         Paragraph('<b>Technologies:</b> ' + escape(', '.join(project['stack'])), styles['ProjectBody']),
+        Paragraph(f'<link href="{url}" color="#155e75">{url}</link>', styles['ProjectLink']),
+    ]))
+story.append(Paragraph('NODE.JS &amp; JAVA / SPRING BOOT', styles['Heading2']))
+for project in json.loads((root / 'data/backend-projects.json').read_text()):
+    url = escape(project['github'])
+    story.append(KeepTogether([
+        Paragraph('<b>' + escape(project['title']) + '</b> — ' + escape(project['description']), styles['ProjectBody']),
         Paragraph(f'<link href="{url}" color="#155e75">{url}</link>', styles['ProjectLink']),
     ]))
 doc.build(story)

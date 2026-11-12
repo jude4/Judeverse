@@ -228,6 +228,7 @@ function ProjectDialog({
 }
 
 export default function Portfolio() {
+  const site = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState(false);
   const [filter, setFilter] = useState<Filter>("All work");
   const [project, setProject] = useState<Project | null>(null);
@@ -261,6 +262,39 @@ export default function Portfolio() {
       previous?.focus();
     };
   }, [studio]);
+  useEffect(() => {
+    const root = site.current;
+    if (!root || !("IntersectionObserver" in window)) return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animations = new Set<Animation>();
+    const observer = new IntersectionObserver((entries) => {
+      if (motion.matches) return;
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target as HTMLElement;
+        const animation = element.animate(
+          [{ opacity: 0, transform: "translateY(26px)" }, { opacity: 1, transform: "translateY(0)" }],
+          { duration: 650, delay: Number(element.dataset.revealDelay || 0), easing: "cubic-bezier(.22,1,.36,1)" },
+        );
+        animations.add(animation);
+        animation.onfinish = () => animations.delete(animation);
+        observer.unobserve(element);
+      });
+    }, { threshold: 0.08 });
+    root.querySelectorAll(".pf-section-heading, .pf-project-card, .pf-experience-intro, .pf-education, .pf-skill-card").forEach((element, index) => {
+      (element as HTMLElement).dataset.revealDelay = String((index % 2) * 90);
+      observer.observe(element);
+    });
+    const stopMotion = () => {
+      if (motion.matches) animations.forEach((animation) => animation.cancel());
+    };
+    motion.addEventListener("change", stopMotion);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      motion.removeEventListener("change", stopMotion);
+    };
+  }, [filter]);
   const openStudio = () => {
     useStudioStore.getState().setQuality("low");
     setStudio(true);
@@ -280,12 +314,12 @@ export default function Portfolio() {
       (filter === "Payments & fintech" &&
         ["flynt", "utilify", "cardplot"].includes(p.id)) ||
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
-      (filter === "Product engineering" && p.id === "bexit") ||
+      (filter === "Product engineering" && ["bexit", "nest-admin", "spring-workshop"].includes(p.id)) ||
       (filter === "Three.js" && p.threejs) ||
       (filter === "AI & research" && p.ai),
   );
   return (
-    <div className="pf-site">
+    <div className="pf-site" ref={site}>
       <a className="pf-skip" href="#main">
         Skip to content
       </a>
@@ -354,6 +388,7 @@ export default function Portfolio() {
               8 years building across fintech, payments and travel.
               <br className="pf-desktop-break" /> Backend depth. Full-stack
               perspective. A curiosity for AI.
+              <span className="pf-backend-note">PHP / Laravel · Node.js / NestJS · Java / Spring Boot</span>
             </p>
             <div className="pf-hero-actions">
               <a className="pf-button pf-button-light" href="#work">
@@ -603,7 +638,7 @@ export default function Portfolio() {
             </p>
             <p>
               I’m a senior software engineer based in Bucharest, with experience
-              in PHP/Laravel architecture, full-stack development, third-party
+              in PHP/Laravel, Node.js/NestJS and Java/Spring Boot, full-stack development, third-party
               integrations and production delivery. Alongside engineering, I’m
               pursuing a master’s in Artificial Intelligence.
             </p>
