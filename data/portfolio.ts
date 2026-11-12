@@ -8,6 +8,7 @@ export type Project = {
   contribution: string;
   stack: string[];
   url?: string;
+  embeddedPreview?: boolean;
   github?: string;
   image?: string;
   threejs?: boolean;
@@ -85,6 +86,7 @@ export const projects: Project[] = [
       "As co-founder, led PHP/Laravel backend development, payment-status webhooks and queue-based background processing. Used Redis and PostgreSQL, created PHPUnit/Pest tests, and debugged payment and integration issues.",
     stack: ["Laravel", "PostgreSQL", "Redis", "Queues", "Webhooks"],
     url: "https://utilify.ng",
+    embeddedPreview: false,
     theme: "amber",
     featured: true,
   },

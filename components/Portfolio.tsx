@@ -180,15 +180,20 @@ function ProjectDialog({
               >
                 Open live website <ExternalLink size={16} />
               </a>
-              <button
-                className="pf-button pf-button-outline"
-                onClick={() => setPreview(!preview)}
-              >
-                {preview ? "Hide website preview" : "Preview here"}{" "}
-                <Globe2 size={16} />
-              </button>
+              {project.embeddedPreview !== false && (
+                <button
+                  className="pf-button pf-button-outline"
+                  onClick={() => setPreview(!preview)}
+                >
+                  {preview ? "Hide website preview" : "Preview here"}{" "}
+                  <Globe2 size={16} />
+                </button>
+              )}
             </div>
-            {preview && (
+            {project.embeddedPreview === false && (
+              <p>Explore {project.title} using “Open live website” above.</p>
+            )}
+            {preview && project.embeddedPreview !== false && (
               <div className="pf-site-preview">
                 <p>
                   Some websites prevent embedding or require a separate sign-in.
