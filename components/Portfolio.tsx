@@ -27,6 +27,7 @@ import {
 import {
   projects,
   skillGroups,
+  engineeringProcess,
   socialLinks,
   type Project,
 } from "@/data/portfolio";
@@ -667,17 +668,26 @@ export default function Portfolio() {
                 </div>
               </div>
             ))}
-            <div className="pf-tool-group">
-              <h3>Testing & reliability</h3>
-              <div className="pf-tags">
-                {["PHPUnit", "Pest", "Idempotency", "Caching", "CI/CD"].map(
-                  (s) => (
-                    <span key={s}>{s}</span>
-                  ),
-                )}
-              </div>
-            </div>
+
           </div>
+        </section>
+        <section className="pf-process pf-container" aria-labelledby="process-title">
+          <div className="pf-section-heading">
+            <div>
+              <p className="pf-eyebrow">THE ENGINEERING PROCESS</p>
+              <h2 id="process-title">From architecture to <em>production.</em></h2>
+            </div>
+            <p>How I connect system design, implementation and delivery to build software that holds up in use.</p>
+          </div>
+          <ol className="pf-process-grid">
+            {engineeringProcess.map((step, index) => (
+              <li key={step.title}>
+                <span className="pf-process-number">0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </li>
+            ))}
+          </ol>
         </section>
         <section
           className="pf-play-section pf-container"

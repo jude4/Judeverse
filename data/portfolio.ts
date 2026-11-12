@@ -260,9 +260,29 @@ export const skillGroups = [
     skills: ["PHP", "Laravel", "Symfony", "Node.js", "NestJS", "Java", "Spring Boot", "REST APIs", "Queues", "Webhooks"],
   },
   {
-    name: "Data & infrastructure",
+    name: "Databases & caching",
     desc: "Durable foundations for scalable applications",
-    skills: ["PostgreSQL", "MySQL", "Redis", "Docker", "AWS", "GitHub Actions"],
+    skills: ["PostgreSQL", "MySQL", "Redis", "SQL", "Eloquent ORM", "Query optimization"],
+  },
+  {
+    name: "Architecture & API design",
+    desc: "Clear boundaries and dependable integrations",
+    skills: ["SOLID", "DDD", "CQRS", "Design patterns", "REST APIs", "Authentication", "API scopes"],
+  },
+  {
+    name: "Messaging & background jobs",
+    desc: "Asynchronous workflows and reliable processing",
+    skills: ["Laravel Queues", "Redis", "Background jobs", "Webhooks", "Idempotency", "Retry handling"],
+  },
+  {
+    name: "CI/CD & deployment",
+    desc: "Repeatable builds and delivery workflows",
+    skills: ["Docker", "GitHub Actions", "CI/CD pipelines", "Git", "AWS", "Linux", "Nginx"],
+  },
+  {
+    name: "Testing & production reliability",
+    desc: "Verification from application logic to integrations",
+    skills: ["PHPUnit", "Pest", "Unit tests", "Feature tests", "API tests", "Integration testing", "Production debugging"],
   },
   {
     name: "AI tools & research",
@@ -276,3 +296,11 @@ export const socialLinks = {
   linkedin: "https://www.linkedin.com/in/jude-onohwosafe",
   email: "mailto:judeufuomao@gmail.com",
 };
+
+export const engineeringProcess = [
+  { title: "Design the boundaries", detail: "Turn requirements into API contracts, data models and clear application responsibilities, using SOLID and domain-driven design where they help." },
+  { title: "Build the workflows", detail: "Connect backend services, databases and frontends. Handle external APIs, authentication and transaction flows with explicit failure paths." },
+  { title: "Move work off the request", detail: "Use Laravel queues and Redis for background processing, webhooks for updates, and idempotency and retries for dependable integrations." },
+  { title: "Test and deliver", detail: "Verify application and integration behavior with PHPUnit and Pest. Support repeatable builds and delivery using Docker and GitHub Actions workflows." },
+  { title: "Operate and improve", detail: "Investigate production issues across APIs, application logic and data. Improve SQL queries, caching and integration reliability in AWS/Linux environments." },
+];
