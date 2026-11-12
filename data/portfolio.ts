@@ -265,9 +265,9 @@ export const skillGroups = [
     skills: ["PostgreSQL", "MySQL", "Redis", "Docker", "AWS", "GitHub Actions"],
   },
   {
-    name: "AI & research",
+    name: "AI tools & research",
     desc: "Intelligent software and experimental systems",
-    skills: ["Neural Networks", "NLP", "Optimization", "Python"],
+    skills: ["Python", "PyTorch", "TensorFlow / Keras", "scikit-learn", "OpenAI API", "Prompt engineering", "OpenCV", "Gymnasium", "Flower", "Jupyter", "NLP"],
   },
 ];
 

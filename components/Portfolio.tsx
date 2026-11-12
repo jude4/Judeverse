@@ -657,7 +657,7 @@ export default function Portfolio() {
               <Layers3 size={21} />
               <span>THE TOOLKIT</span>
             </div>
-            {skillGroups.slice(0, 3).map((group) => (
+            {skillGroups.map((group) => (
               <div className="pf-tool-group" key={group.name}>
                 <h3>{group.name}</h3>
                 <div className="pf-tags">
