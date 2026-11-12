@@ -1,3 +1,5 @@
+import aiProjects from "./ai-projects.json";
+
 export type Project = {
   id: string;
   number: string;
@@ -12,6 +14,7 @@ export type Project = {
   github?: string;
   image?: string;
   threejs?: boolean;
+  ai?: boolean;
   theme: string;
   featured?: boolean;
   status?: string;
@@ -194,6 +197,9 @@ export const projects: Project[] = [
   },
   {
     id: "spam",
+    featured: true,
+    ai: true,
+    github: "https://github.com/jude4/sms-span-detection",
     number: "12",
     title: "Neural Spam Detection",
     category: "MACHINE LEARNING / NLP",
@@ -237,6 +243,7 @@ export const projects: Project[] = [
     theme: "cyan",
     status: "ACADEMIC PROTOTYPE",
   },
+  ...aiProjects,
 ];
 
 export const skillGroups = [

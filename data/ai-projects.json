@@ -1,0 +1,83 @@
+[
+  {
+    "id": "skin-lesion",
+    "number": "15",
+    "title": "Skin Lesion Classification",
+    "category": "COMPUTER VISION / FEDERATED LEARNING",
+    "summary": "Comparing centralized and federated ResNet18 training on ISIC 2019.",
+    "description": "Academic project with data preparation, centralized PyTorch training, Flower FedAvg simulation, and per-class evaluation.",
+    "contribution": "Data preparation, training pipelines and model-comparison experiments.",
+    "stack": [
+      "Python",
+      "PyTorch",
+      "ResNet18",
+      "Flower",
+      "FedAvg"
+    ],
+    "github": "https://github.com/jude4/trustworthy-skin-lesion-classification-isic-2019",
+    "theme": "mint",
+    "featured": true,
+    "ai": true,
+    "status": "ACADEMIC / EXPERIMENTAL"
+  },
+  {
+    "id": "llm-agents",
+    "number": "16",
+    "title": "LLM Negotiation Agents",
+    "category": "LLM / MULTI-AGENT SYSTEMS",
+    "summary": "Prompt-driven agents negotiate house-building contracts.",
+    "description": "Academic simulation of auctions and monotonic-concession negotiations between a house owner and construction companies, using an OpenAI-backed LLM client.",
+    "contribution": "Prompt strategies for budgets, bidding and negotiation, using agent state and interaction history.",
+    "stack": [
+      "Python",
+      "OpenAI",
+      "Prompt engineering",
+      "Multi-agent systems"
+    ],
+    "github": "https://github.com/jude4/house-building-llm-mas",
+    "theme": "violet",
+    "featured": true,
+    "ai": true,
+    "status": "ACADEMIC / EXPERIMENTAL"
+  },
+  {
+    "id": "rl-control",
+    "number": "17",
+    "title": "Q-Learning & SARSA",
+    "category": "REINFORCEMENT LEARNING",
+    "summary": "Comparing on-policy and off-policy control in Gymnasium environments.",
+    "description": "Academic experiments comparing Q-Learning and SARSA on Taxi-v3 and FrozenLake-v1, with reward plots, greedy-policy evaluation and hyperparameter comparisons.",
+    "contribution": "Tabular reinforcement-learning experiments and analysis of learning rate, discount and exploration settings.",
+    "stack": [
+      "Python",
+      "Gymnasium",
+      "NumPy",
+      "Matplotlib"
+    ],
+    "github": "https://github.com/jude4/qlearning-vs-sarsa-experiments",
+    "theme": "blue",
+    "featured": true,
+    "ai": true,
+    "status": "ACADEMIC / EXPERIMENTAL"
+  },
+  {
+    "id": "panorama",
+    "number": "18",
+    "title": "Drone Panorama Stitching",
+    "category": "COMPUTER VISION",
+    "summary": "Turning drone video frames into panoramic images.",
+    "description": "Academic computer-vision pipeline using frame sampling, SIFT/ORB feature matching, RANSAC homographies, warping and blending.",
+    "contribution": "Notebook-based panorama pipeline and analysis of perspective and parallax limitations.",
+    "stack": [
+      "Python",
+      "OpenCV",
+      "NumPy",
+      "Jupyter"
+    ],
+    "github": "https://github.com/jude4/panorama-stitching",
+    "theme": "cyan",
+    "featured": true,
+    "ai": true,
+    "status": "ACADEMIC / EXPERIMENTAL"
+  }
+]

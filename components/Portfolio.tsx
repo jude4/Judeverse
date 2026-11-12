@@ -52,6 +52,7 @@ const filters = [
   "Travel",
   "Product engineering",
   "Three.js",
+  "AI & research",
 ] as const;
 type Filter = (typeof filters)[number];
 
@@ -158,6 +159,7 @@ function ProjectDialog({
         <p className="pf-eyebrow">{project.category}</p>
         <h2 id="project-title">{project.title}</h2>
         <p className="pf-dialog-lead">{project.summary}</p>
+        {project.status && <p className="pf-eyebrow">{project.status}</p>}
         <h3>The product</h3>
         <p>{project.description}</p>
         <h3>My contribution</h3>
@@ -210,7 +212,12 @@ function ProjectDialog({
             )}
           </>
         )}
-        {!project.url && (
+        {project.github && (
+          <a className="pf-button pf-button-light" href={project.github} target="_blank" rel="noopener noreferrer">
+            View source on GitHub <Github size={16} />
+          </a>
+        )}
+        {!project.url && !project.github && (
           <a className="pf-text-link" href={socialLinks.email}>
             Ask me about this project <ArrowUpRight size={16} />
           </a>
@@ -274,7 +281,8 @@ export default function Portfolio() {
         ["flynt", "utilify", "cardplot"].includes(p.id)) ||
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
       (filter === "Product engineering" && p.id === "bexit") ||
-      (filter === "Three.js" && p.threejs),
+      (filter === "Three.js" && p.threejs) ||
+      (filter === "AI & research" && p.ai),
   );
   return (
     <div className="pf-site">
@@ -505,7 +513,7 @@ export default function Portfolio() {
             ))}
           </div>
           <p className="pf-work-footnote">
-            Professional contributions and personal Three.js projects. Open a
+            Professional contributions, Three.js projects and AI experiments. Open a
             project to see my role or explore the live experience.
           </p>
         </section>
