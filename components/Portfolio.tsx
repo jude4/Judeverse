@@ -457,9 +457,6 @@ export default function Portfolio() {
                 BUILDER BY NATURE.
               </span>
             </div>
-            <span className="pf-portrait-coordinate">
-              44.4268° N · 26.1025° E
-            </span>
           </div>
         </section>
         <div className="pf-proof pf-container">
