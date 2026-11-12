@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
@@ -50,6 +51,7 @@ const filters = [
   "Payments & fintech",
   "Travel",
   "Product engineering",
+  "Three.js",
 ] as const;
 type Filter = (typeof filters)[number];
 
@@ -60,6 +62,19 @@ function ProjectVisual({
   project: Project;
   compact?: boolean;
 }) {
+  if (project.image) {
+    return (
+      <div className={`pf-project-visual pf-project-screenshot ${compact ? "pf-visual-small" : ""}`}>
+        <Image
+          src={assetPath(project.image)}
+          alt={`${project.title} website screenshot`}
+          width="1440"
+          height="1000"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
   const words: Record<string, [string, string, string]> = {
     flynt: ["Request", "Idempotency", "Process once"],
     tiqwa: ["Search", "Supplier APIs", "Booking"],
@@ -253,7 +268,8 @@ export default function Portfolio() {
       (filter === "Payments & fintech" &&
         ["flynt", "utilify", "cardplot"].includes(p.id)) ||
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
-      (filter === "Product engineering" && p.id === "beezlinq"),
+      (filter === "Product engineering" && p.id === "beezlinq") ||
+      (filter === "Three.js" && p.threejs),
   );
   return (
     <div className="pf-site">
@@ -484,8 +500,8 @@ export default function Portfolio() {
             ))}
           </div>
           <p className="pf-work-footnote">
-            Selected contributions, not solo-built products. Open a project to
-            see my role.
+            Professional contributions and personal Three.js projects. Open a
+            project to see my role or explore the live experience.
           </p>
         </section>
         <section

@@ -10,6 +10,7 @@ export type Project = {
   url?: string;
   github?: string;
   image?: string;
+  threejs?: boolean;
   theme: string;
   featured?: boolean;
   status?: string;
@@ -118,6 +119,8 @@ export const projects: Project[] = [
   },
   {
     id: "camera",
+    featured: true,
+    threejs: true,
     number: "07",
     title: "The Camera",
     category: "CREATIVE DEVELOPMENT / WEBGL",
@@ -132,8 +135,64 @@ export const projects: Project[] = [
     theme: "violet",
   },
   {
-    id: "spam",
+    id: "supermarket",
     number: "08",
+    title: "Supermarket 3D Explorer",
+    category: "CREATIVE DEVELOPMENT / WEBGL",
+    summary: "An interactive supermarket exploration project built with Three.js.",
+    description: "An interactive supermarket exploration project built with Three.js. Open the live project to explore the experience.",
+    contribution: "Developed this Three.js project. Explore the live experience below.",
+    stack: ["Three.js", "WebGL"],
+    url: "https://supermarket-3d-explorer.vercel.app/",
+    theme: "mint",
+    featured: true,
+    threejs: true,
+  },
+  {
+    id: "duskline",
+    number: "09",
+    title: "Operation Duskline",
+    category: "CREATIVE DEVELOPMENT / WEBGL",
+    summary: "A Three.js project exploring an interactive browser-based 3D experience.",
+    description: "A Three.js project exploring an interactive browser-based 3D experience. Open the live project to explore the experience.",
+    contribution: "Developed this Three.js project. Explore the live experience below.",
+    stack: ["Three.js", "WebGL"],
+    url: "https://operation-duskline.vercel.app/",
+    theme: "amber",
+    featured: true,
+    threejs: true,
+  },
+  {
+    id: "brain",
+    number: "10",
+    title: "Human Brain",
+    category: "CREATIVE DEVELOPMENT / WEBGL",
+    summary: "A browser-based human brain project built with Three.js.",
+    description: "A browser-based human brain project built with Three.js. Open the live project to explore the experience.",
+    contribution: "Developed this Three.js project. Explore the live experience below.",
+    stack: ["Three.js", "WebGL"],
+    url: "https://human-brain-zeta.vercel.app/",
+    theme: "rose",
+    featured: true,
+    threejs: true,
+  },
+  {
+    id: "formula",
+    number: "11",
+    title: "Formula X",
+    category: "CREATIVE DEVELOPMENT / WEBGL",
+    summary: "An interactive Formula X project built with Three.js.",
+    description: "An interactive Formula X project built with Three.js. Open the live project to explore the experience.",
+    contribution: "Developed this Three.js project. Explore the live experience below.",
+    stack: ["Three.js", "WebGL"],
+    url: "https://formula-x-eta.vercel.app/",
+    theme: "blue",
+    featured: true,
+    threejs: true,
+  },
+  {
+    id: "spam",
+    number: "12",
     title: "Neural Spam Detection",
     category: "MACHINE LEARNING / NLP",
     summary:
@@ -148,7 +207,7 @@ export const projects: Project[] = [
   },
   {
     id: "pso",
-    number: "09",
+    number: "13",
     title: "Swarm Intelligence",
     category: "OPTIMIZATION / RESEARCH",
     summary:
@@ -163,7 +222,7 @@ export const projects: Project[] = [
   },
   {
     id: "environment",
-    number: "10",
+    number: "14",
     title: "Environmental Data Lab",
     category: "BIG DATA / STREAMING",
     summary:

@@ -1609,3 +1609,18 @@ body {
 .pf-project-card:hover .pf-visual-name > span {
   transform: translate(4px, -4px);
 }
+
+.pf-project-screenshot {
+  padding: 0;
+  background: #101820;
+}
+.pf-project-screenshot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.pf-project-screenshot::before {
+  display: none;
+}

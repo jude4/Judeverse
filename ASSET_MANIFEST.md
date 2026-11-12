@@ -19,3 +19,9 @@ No personal photos, logos, résumé PDF, project screenshots or GLB room assets 
 ## Rules
 
 Use genuine project screenshots, not fabricated UI screenshots. Use licensed assets only. Record source, creator and license for every third-party asset before commercial publishing. Keep polygon counts and texture budgets reasonable, prioritize a beautiful image over excessive dynamic lights.
+
+## Project screenshot capture — November 12, 2026
+
+The main project gallery now supports real local screenshots through each project's `image` field (a path under `public`, such as `/assets/projects/tiqwa.webp`). Images appear in both cards and project dialogs. Existing overview artwork remains until a genuine capture is available.
+
+Capture is currently blocked by the cloud outbound network policy. HTTPS requests to the Camera and Tiqwa sites returned proxy CONNECT 403, and Chromium reported ERR_TUNNEL_CONNECTION_FAILED for the Camera. Required project domains were saved to the environment draft. No error pages or fabricated screenshots have been added. After network access is saved and applied, capture the public sites, verify the images, and set the corresponding project image paths. Cardplot has no supplied public URL.
