@@ -1,6 +1,14 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-export type Section = 'home' | 'about' | 'projects' | 'lab' | 'experience' | 'skills' | 'contact';
+export type Section =
+  | "home"
+  | "about"
+  | "projects"
+  | "lab"
+  | "experience"
+  | "skills"
+  | "contact";
+export type Station = "overview" | "laptop" | "chair";
 
 type StudioState = {
   entered: boolean;
@@ -8,26 +16,31 @@ type StudioState = {
   activeProject: string | null;
   hovered: string | null;
   nightMode: boolean;
-  quality: 'high' | 'low';
+  quality: "high" | "low";
+  station: Station;
+  focusStation: (station: Station) => void;
   enter: (section?: Section) => void;
   navigate: (section: Section) => void;
   openProject: (id: string) => void;
   setHovered: (id: string | null) => void;
   toggleMood: () => void;
-  setQuality: (quality: 'high' | 'low') => void;
+  setQuality: (quality: "high" | "low") => void;
 };
 
 export const useStudioStore = create<StudioState>((set) => ({
   entered: false,
-  section: 'home',
+  section: "home",
   activeProject: null,
   hovered: null,
-  nightMode: true,
-  quality: 'high',
-  enter: (section = 'home') => set({ entered: true, section, activeProject: null }),
+  nightMode: false,
+  quality: "low",
+  station: "overview",
+  focusStation: (station) => set({ station, section: "home", hovered: null }),
+  enter: (section = "home") =>
+    set({ entered: true, section, activeProject: null }),
   navigate: (section) => set({ section, activeProject: null }),
-  openProject: (id) => set({ section: 'projects', activeProject: id }),
+  openProject: (id) => set({ section: "projects", activeProject: id }),
   setHovered: (hovered) => set({ hovered }),
-  toggleMood: () => set(s => ({ nightMode: !s.nightMode })),
-  setQuality: (quality) => set({ quality })
+  toggleMood: () => set((s) => ({ nightMode: !s.nightMode })),
+  setQuality: (quality) => set({ quality }),
 }));

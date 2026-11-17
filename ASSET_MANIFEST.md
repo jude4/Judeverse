@@ -25,3 +25,9 @@ Use genuine project screenshots, not fabricated UI screenshots. Use licensed ass
 The main project gallery now supports real local screenshots through each project's `image` field (a path under `public`, such as `/assets/projects/tiqwa.webp`). Images appear in both cards and project dialogs. Existing overview artwork remains until a genuine capture is available.
 
 Capture is currently blocked by the cloud outbound network policy. HTTPS requests to the Camera and Tiqwa sites returned proxy CONNECT 403, and Chromium reported ERR_TUNNEL_CONNECTION_FAILED for the Camera. Required project domains were saved to the environment draft. No error pages or fabricated screenshots have been added. After network access is saved and applied, capture the public sites, verify the images, and set the corresponding project image paths. Cardplot has no supplied public URL.
+
+## Workspace revision — November 17, 2026
+
+The studio uses original code-built notebook and chair geometry, with locally generated wood grain, fabric bump, grounding shadow and screen artwork. No third-party models, logos, HDR panoramas or remote fonts were introduced. The notebook screen is an original portfolio navigation illustration, not a screenshot of any listed product. All generated textures are released when the studio unmounts. See `docs/WORKSPACE.md` for sizes and quality settings.
+
+SmartStay Rentals (`https://smartstaysrental.com`) and Mailyte (`https://mailyte.com/`) use overview artwork. Their sites could not be retrieved through the cloud proxy; no screenshots or unverified feature/stack claims were added.

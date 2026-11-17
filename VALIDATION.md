@@ -1,3 +1,23 @@
+# Workspace revision validation — November 17, 2026
+
+Validated with Node.js 22.23.0 and a fresh frozen-lockfile `npm ci`. The production static export was served through `npm run preview`, mounted at `/Judeverse/` on port 4173.
+
+- `npm run typecheck`: passed.
+- `npm run lint`: passed with no warnings.
+- `npm run build`: passed; initial page first-load JavaScript remains approximately 125 KB. The 3D workspace loads only after opting in.
+- `git diff --check`: passed.
+- Production résumé request: HTTP 200, valid PDF header.
+- Desktop and mobile screenshots inspected: closed/open notebook, chair, daylight/evening, Detail shadows, content panel and 2D fallback.
+- Product dialogs restore keyboard focus after Escape. Product engineering includes SmartStay Rentals and Mailyte with the corrected owner-supplied links.
+- `STUDIO_BASE_URL=http://127.0.0.1:4173/Judeverse/ npm run test:browser`: 5 passed. Covers lazy loading, keyboard/touch actions, both quality modes, reduced and normal motion, widths 390 and 320, 2D re-entry and WebGL context-loss fallback.
+- Instrumented WebGL calls stop at rest and resume on interaction. Software Chromium checks establish behavior, not hardware frame-rate benchmarks.
+
+The studio's screen, materials and geometry are original local artwork; no new model, font, HDR or product screenshot downloads are required. The product websites remained blocked by the running cloud network policy, so their detailed features, stacks and roles have not been invented. These checks do not establish deployment to GitHub Pages.
+
+The earlier validation below records the previous portfolio revision and its historical Lighthouse results. Those scores were not rerun for this change.
+
+---
+
 # Portfolio validation
 
 Validated on the local production static export using Node.js 22.23.4 and Chromium, November 11, 2026. This does not establish that changes are deployed to GitHub Pages.
