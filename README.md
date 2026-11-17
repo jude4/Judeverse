@@ -43,11 +43,17 @@ Project dialogs show contributions and offer a direct live link. A third-party w
 
 - Static HTML includes the introduction, projects, career and education.
 - The initial page loads no WebGL canvas, 3D scene, AI simulation or third-party embed.
-- The studio is explicitly requested and starts at low graphics quality.
+- The studio is explicitly requested, starts in Eco quality, and stops GPU drawing when its camera and objects settle.
 - Local responsive AVIF/WebP assets have fixed dimensions; no runtime image service or external fonts are required.
 - Native career disclosures support keyboard navigation. Native dialogs trap focus, support Escape and restore focus on close.
 - Mobile navigation, a skip link, descriptive controls and reduced-motion preferences are supported.
 - Lint excludes generated `.next/`, `out/` and `next-env.d.ts` rather than inspecting build outputs.
+
+## Interactive workspace
+
+The studio now centers on an aluminium notebook, a sculpted office chair and an interactive desk lamp. Open the laptop to explore projects, take a seat to meet the engineer, or switch between daylight and evening. Keyboard and touch controls mirror the object actions, with a 2D fallback. See [workspace design and browser checks](docs/WORKSPACE.md).
+
+After `npm run build`, use `npm run preview` to serve the export at its correct `/Judeverse/` base path. Run `STUDIO_BASE_URL=http://127.0.0.1:4173/Judeverse/ npm run test:browser` against that server.
 
 ## Deployment
 

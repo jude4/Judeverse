@@ -132,10 +132,12 @@ function ProjectDialog({
   const [preview, setPreview] = useState(false);
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
-    dialog.current?.showModal();
+    const modal = dialog.current;
+    modal?.showModal();
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
+      modal?.close();
       document.body.style.overflow = previousOverflow;
       previous?.focus();
     };
@@ -152,7 +154,7 @@ function ProjectDialog({
     >
       <div className="pf-dialog-bar">
         <span>SELECTED WORK / {project.number}</span>
-        <button autoFocus onClick={onClose} aria-label="Close project">
+        <button onClick={onClose} aria-label="Close project">
           <X size={21} />
         </button>
       </div>
@@ -304,6 +306,8 @@ export default function Portfolio() {
   }, [filter]);
   const openStudio = () => {
     useStudioStore.getState().setQuality("low");
+    useStudioStore.getState().enter("home");
+    useStudioStore.getState().focusStation("overview");
     setStudio(true);
   };
   const copyEmail = async () => {
@@ -321,7 +325,7 @@ export default function Portfolio() {
       (filter === "Payments & fintech" &&
         ["flynt", "utilify", "cardplot"].includes(p.id)) ||
       (filter === "Travel" && ["tiqwa", "atravelikes"].includes(p.id)) ||
-      (filter === "Product engineering" && ["bexit", "nest-admin", "spring-workshop"].includes(p.id)) ||
+      (filter === "Product engineering" && ["bexit", "smartstay-rentals", "mailyte", "nest-admin", "spring-workshop"].includes(p.id)) ||
       (filter === "Three.js" && p.threejs) ||
       (filter === "AI & research" && p.ai) ||
       (filter === "Packages & collaboration" && p.packageWork),

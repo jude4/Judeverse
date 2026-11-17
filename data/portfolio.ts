@@ -24,7 +24,8 @@ export type Project = {
   status?: string;
 };
 
-// Professional contributions below are sourced from the supplied CV.
+// Professional contributions below are sourced from the supplied CV or confirmed by the owner.
+// SmartStay Rentals and Mailyte were supplied by the owner; no unverified stack or role details are claimed.
 export const projects: Project[] = [
   {
     id: "flynt",
@@ -124,6 +125,36 @@ export const projects: Project[] = [
     stack: [],
     url: "https://atravelikes.com",
     theme: "cyan",
+    featured: true,
+  },
+  {
+    id: "smartstay-rentals",
+    number: "24",
+    title: "SmartStay Rentals",
+    category: "PRODUCT ENGINEERING",
+    summary: "Product development for SmartStay Rentals.",
+    description:
+      "SmartStay Rentals is a product I worked on. Explore the application through its live website.",
+    contribution:
+      "Contributed to the product's development. Get in touch to discuss my role and the implementation in more detail.",
+    stack: [],
+    url: "https://smartstaysrental.com",
+    theme: "mint",
+    featured: true,
+  },
+  {
+    id: "mailyte",
+    number: "25",
+    title: "Mailyte",
+    category: "PRODUCT ENGINEERING",
+    summary: "Product development for Mailyte.",
+    description:
+      "Mailyte is a product I worked on. Explore the application through its live website.",
+    contribution:
+      "Contributed to the product's development. Get in touch to discuss my role and the implementation in more detail.",
+    stack: [],
+    url: "https://mailyte.com/",
+    theme: "blue",
     featured: true,
   },
   {

@@ -35,8 +35,8 @@ function Projects() {
     <p className="lead-copy">{selected.summary}</p>
     <div className="minor-heading"><span className="mini-bar"/>OVERVIEW</div><p className="body-copy">{selected.description}</p>
     <div className="minor-heading"><span className="mini-bar"/>ENGINEERING FOCUS</div><p className="body-copy">{selected.contribution}</p>
-    <div className="minor-heading"><span className="mini-bar"/>TECHNOLOGY</div>
-    <div className="tech-tags">{selected.stack.map(tag=><span key={tag}>{tag}</span>)}</div>
+    {selected.stack.length > 0 && <><div className="minor-heading"><span className="mini-bar"/>TECHNOLOGY</div>
+    <div className="tech-tags">{selected.stack.map(tag=><span key={tag}>{tag}</span>)}</div></>}
     {selected.url && <a className="primary-project-link" href={selected.url} target="_blank" rel="noopener noreferrer">VISIT LIVE PROJECT <ArrowUpRight size={17}/></a>}
     {selected.github && <a className="panel-link" href={selected.github} target="_blank" rel="noopener noreferrer">VIEW SOURCE <Github size={17}/></a>}
   </>;
